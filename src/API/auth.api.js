@@ -10,3 +10,10 @@ export const register = async (values)=>{
     const res = await axios.post(baseUrl, values)
     return res.data;
 }
+export const verifyToken = async (token)=> {
+    const res = await axios.get(`${baseUrl}auth/profile`, {
+        headers: 
+        {Authorization: `Bearer ${token}`}
+    } )
+    return res
+}
