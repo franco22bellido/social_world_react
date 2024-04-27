@@ -1,7 +1,7 @@
 import { useState } from "react"
-import BrowserForm from "../../components/Explore/BrowserForm"
-import UserResults from "../../components/Explore/UserResults"
-const Explore = () => {
+import BrowserForm from "../../components/Browser/BrowserForm"
+import UserResults from "../../components/Browser/UserResults"
+const Browser = () => {
 
   const [results, setResults] = useState()
 
@@ -17,4 +17,4 @@ const Explore = () => {
   )
 }
 
-export default Explore
+export default Browser

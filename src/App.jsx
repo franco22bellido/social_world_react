@@ -7,7 +7,8 @@ import Profile from './Pages/Profile/Profile'
 import Principal from './Pages/Principal/Principal'
 import PostPage from './Pages/Post/PostPage'
 import NavBar from './components/NavBar'
-import Explore from './Pages/Explore/Explore'
+import Browser from './Pages/Browser/Browser'
+import Discover from './Pages/Discover/Discover'
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
           <Route path='/:username' element={<Profile/>}/>
           <Route path='/' element={<Principal/>}/>
           <Route path='/post/:postId' element={<PostPage/>}/>
-          <Route path='/explore' element={<Explore/>}/>
+          <Route path='/browser' element={<Browser/>}/>
+          <Route path='/discover' element={<Discover/>}/>
           <Route path='/coments/:postId' element={<></>}/>
           <Route path='/likes/:postId' element={<></>}/>
           <Route path='/followers/:username' element={<></>}/>
