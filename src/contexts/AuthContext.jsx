@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
             }
             setUser({
                 user: res.data.user,
+                token
             })
             setIsAuthenticated(true)
             return setLoading(false)
