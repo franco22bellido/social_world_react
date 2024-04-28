@@ -30,7 +30,7 @@ const Profile = () => {
   }
   useEffect(()=> {
     getProfile()
-  }, [])
+  }, [username])
 
   return (
     <section>

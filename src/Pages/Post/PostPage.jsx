@@ -4,8 +4,8 @@ import {getOne} from '../../API/posts.api'
 import Post from "../../components/posts/Post"
 import CommentsList from "../../components/comments/CommentsList"
 import { getCommentsByPost } from "../../API/comments.api"
-import CreatePost from "../../components/posts/CreatePost"
 import CommentForm from "../../components/comments/CommentForm"
+import ButtonLike from "../../components/Likes/ButtonLike"
 
 const PostPage = () => {
   const {postId} = useParams()
@@ -29,6 +29,7 @@ const PostPage = () => {
         post && (
         <>
         <Post username={post.user.username} post={post}/>
+        <ButtonLike post={post} setPost={setPost}/>
         <CommentForm/>
         <CommentsList comments={comments}/>
         </>
