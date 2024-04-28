@@ -9,3 +9,11 @@ export const getCommentsByPost = async (postId)=> {
         console.log(error)
     }
 }
+export const createComment = async (postId, text)=> {
+    try {
+        const {data} = await axios.post(`${baseUrl}comments/${postId}`,{ text})
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
