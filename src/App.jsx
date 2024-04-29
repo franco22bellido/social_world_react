@@ -9,6 +9,7 @@ import PostPage from './Pages/Post/PostPage'
 import NavBar from './components/NavBar'
 import Browser from './Pages/Browser/Browser'
 import Discover from './Pages/Discover/Discover'
+import RegisterPage from './Pages/RegisterPage'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
     <BrowserRouter>
     <NavBar/>
       <Routes>
-        <Route path='/register' element={<></>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/login' element={<LoginPage/>}/>
 
         <Route element={<ValidateRoute/>}>

@@ -20,14 +20,14 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = async (values) => {
         try {
-            await register(values)
+            return await register(values)
         } catch (error) {
             return error
         }
     }
     const signIn = async (values) => {
         try {
-            const { token, user } = await login(values)
+            const { user, token } = await login(values)
             setIsAuthenticated(true)
             setUser(user)
             Cookies.set('token', token)

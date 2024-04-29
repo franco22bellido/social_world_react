@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 const LoginPage = () => {
 
     const [values, setValues] = useState()
-    const { signIn } = useAuth()
-
+    const { signIn, isAuthenticated } = useAuth()
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await signIn(values)
-        console.log(res)
+        await signIn(values)
     }
+    useEffect(()=> {
+        if(isAuthenticated){
+            return navigate('/')
+        }
+    }, [isAuthenticated])
     return (
         <article>
             <form onSubmit={handleSubmit}>
