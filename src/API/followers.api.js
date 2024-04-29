@@ -41,7 +41,7 @@ export const followUser = async (followingId)=> {
         console.log(error)
     }
 }
-export const getFollowingsByFollowingId = async (followingId)=> {
+export const getFollowingById = async (followingId)=> {
     try {
         const res = await axios.get(`${baseUrl}following/${followingId}`)
         return res.data
