@@ -46,16 +46,13 @@ export const AuthProvider = ({ children }) => {
             return setIsAuthenticated(false)
         }
         try {
-            const res = await verifyToken(token)
-            if(!res.data){
+            const {user} = await verifyToken(token)
+            if(!user){
                 setLoading(false)
                 setUser(null)
                 return setIsAuthenticated(false)
             }
-            setUser({
-                user: res.data.user,
-                token
-            })
+            setUser(user)
             setIsAuthenticated(true)
             return setLoading(false)
         } catch (error) {

@@ -10,7 +10,7 @@ const useProfile = (username) => {
 
     const getProfile = async () => {
         const { data } = await getUserProfile(user.token, username)
-        if (username !== user.user.username) {
+        if (username !== user.username) {
             const { state } = await getFollowingById(data.id)
             return setProfile({ ...data, followState: state })
         }

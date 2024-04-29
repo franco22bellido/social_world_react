@@ -2,24 +2,17 @@ import PostsList from "../../components/posts/PostsList"
 import { useParams } from "react-router-dom"
 import {useAuth} from '../../contexts/AuthContext'
 import {Link} from 'react-router-dom'
-import { followUser, deleteFollowing} from "../../API/followers.api"
 import useProfile from "./UseProfile"
+import FollowButton from "./follow/FollowButton"
+import UseFollow from "./follow/UseFollow"
 
 const Profile = () => {
   const {username} = useParams()
   const {user} = useAuth()
   const {profile, setProfile} = useProfile(username)
+  const {handleFollowOne} = UseFollow(profile, setProfile)
 
 
-  const followOne = async (followingId)=> {
-    if(profile.followState){
-      await deleteFollowing(followingId)
-      return setProfile({...profile, followState: !profile.followState})
-    }
-    await followUser(followingId)
-    return setProfile({...profile, followState: !profile.followState})
-  }
-  
   return (
     <section>
       {
@@ -33,8 +26,8 @@ const Profile = () => {
             <Link>followings: {profile.profile.followingCount}</Link>
 
             {
-              username !== user.user.username &&
-              <button onClick={()=>followOne(profile.id)}>{profile.followState ? 'unfollow' : 'follow'}</button>
+              username !== user.username &&
+              <FollowButton handleFollowOne={handleFollowOne} followState={profile.followState}/>
             }
 
             <h4>created At : {profile.profile.createdAt}</h4>

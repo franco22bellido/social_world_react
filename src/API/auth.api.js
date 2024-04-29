@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios.config";
 import { baseUrl } from "./base.url";
 
 export const login = async ({username, password})=> {
@@ -15,5 +15,5 @@ export const verifyToken = async (token)=> {
         headers: 
         {Authorization: `Bearer ${token}`}
     } )
-    return res
+    return res.data
 }
