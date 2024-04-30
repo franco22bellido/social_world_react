@@ -27,27 +27,28 @@ export const AuthProvider = ({ children }) => {
     }
     const signIn = async (values) => {
         try {
-            const { user, token } = await login(values)
-            setIsAuthenticated(true)
+            const { user } = await login(values)
             setUser(user)
-            Cookies.set('token', token)
+            // const bearer = `B${token}`
+            // Cookies.set('token', token)
+            setIsAuthenticated(true)
             return user;
         } catch (error) {
-            return error
+            console.log(error)
         }
     }
 
-    const verifySession = async ()=>{
-        const token = Cookies.get('token')
+    const verifySession = async () => {
+        const token = Cookies.get('authorization')
         setLoading(true)
-        if(!token){
+        if (!token) {
             setLoading(false)
             setUser(null)
             return setIsAuthenticated(false)
         }
         try {
-            const {user} = await verifyToken(token)
-            if(!user){
+            const { user } = await verifyToken()
+            if (!user) {
                 setLoading(false)
                 setUser(null)
                 return setIsAuthenticated(false)
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
             return setLoading(false)
         } catch (error) {
-            console.log(error.response)
+            console.log(error)
         }
 
     }

@@ -1,13 +1,13 @@
 import axios from "axios";
-import Cookies from 'js-cookie'
+import { baseUrl } from "./base.url";
+// import Cookies from "js-cookie";
 
-const token = Cookies.get('token')
+// const token = Cookies.get('token')
 
+const instance = axios.create({
+  baseURL: baseUrl,
+  withCredentials: true
+  // headers :{ Authorization : `Bearer ${token}`}
+});
 
-const newAxios = axios.create({
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
-
-export default newAxios
+export default instance;
