@@ -1,12 +1,11 @@
 import axios from "./axios.config"
-import { baseUrl } from "./base.url"
 
 const pathname = 'posts/'
 
 
 export const getPostsByFollowing = async ()=> {
     try {
-        const res = await axios.get(`${baseUrl}${pathname}`)
+        const res = await axios.get(`${pathname}`)
         return res.data
     } catch (error) {
         console.log(error)
@@ -14,7 +13,7 @@ export const getPostsByFollowing = async ()=> {
 }
 export const getOne = async (postId)=> {
     try {
-        const res = await axios.get(`${baseUrl}${pathname}${postId}`)
+        const res = await axios.get(`${pathname}${postId}`)
         return res.data
     } catch (error) {
         return console.log(error)
@@ -23,8 +22,16 @@ export const getOne = async (postId)=> {
 
 export const createPost = async (values)=> {
     try {
-        const res = await axios.post(`${baseUrl}${pathname}`, values)
+        const res = await axios.post(`${pathname}`, values)
         return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const deletePost = async  (postId)=> {
+    try {
+        const res = await axios.delete(`${pathname}${postId}`)
+        return res;
     } catch (error) {
         console.log(error)
     }

@@ -1,0 +1,57 @@
+*{
+    font-family: "Oswald", sans-serif;
+    box-sizing: border-box;
+}
+
+/*commons*/
+h1{
+    margin: 21px 0px;
+    font-size: 32px;
+}
+body{
+    background-color: rgb(13, 13, 13);
+    color: white;
+}
+input{
+    width: 300px;
+    max-width: 100%;
+}
+/*buttons*/
+
+.container-flex{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.container-flex-row{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.p-m-0{
+   margin: 0px;
+   padding: 0px;
+}
+
+.text-center{
+    text-align: center;
+}
+.li-inline{
+    list-style: none;
+    margin: 2px;
+    display: inline-block;
+}
+
+.link{
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(228, 228, 228);
+}
+.link:first-child{
+    margin-right: 10px;
+}
+.link:hover{
+    color: rgb(170, 170, 170);
+}

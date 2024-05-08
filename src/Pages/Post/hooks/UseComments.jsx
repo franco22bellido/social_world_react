@@ -13,7 +13,7 @@ const UseComments = (postId) => {
         getComments()
     },[postId])
   return {
-    comments
+    comments, setComments
   }
 }
 

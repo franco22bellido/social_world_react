@@ -1,0 +1,33 @@
+.container{ 
+    width: 100%;
+}
+.form{
+    margin-top: 30px;
+    width: 70%;
+    padding: 40px 0px;
+    display: flex;
+    flex-flow: column wrap;
+}
+.form-input{
+    font-size: 13px;
+    padding: 3px 20px;
+    text-align: center;
+    margin: 4px 0px;
+}
+.form-area{
+    display: block;
+    width: 100%;
+    height: auto;
+    outline: none;
+    resize: none;
+    margin-bottom: 6px;
+    font-size: 14px;
+    background-color: rgb(30, 30, 30);
+    color: white;
+}
+.form-area::placeholder{
+    color: rgba(255, 255, 255, 0.798);
+  }
+  .form-area::-webkit-scrollbar{
+    width: 0px;
+  }

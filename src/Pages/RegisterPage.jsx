@@ -15,16 +15,17 @@ const RegisterPage = () => {
   })
 
   return (
-    <>
-        <form onSubmit={onSubmit}>
-            <input placeholder='username' type="text" {...register('username')}/>
-            <input placeholder='email' type="text" {...register('email')}/>
-            <input placeholder='password' type="password" {...register('password')}/>
-            <input placeholder='firstname' type="text" {...register('firstname')}/>
-            <input placeholder='lastname' type="text" {...register('lastname')}/>
-            <button type='submit'>register</button>
+    <section className='container-flex'>
+        <form className='container-flex form' onSubmit={onSubmit}>
+        <h1>Register</h1>
+            <input className='form-input' placeholder='username' type="text" {...register('username')}/>
+            <input className='form-input' placeholder='email' type="text" {...register('email')}/>
+            <input className='form-input' placeholder='password' type="password" {...register('password')}/>
+            <input className='form-input' placeholder='firstname' type="text" {...register('firstname')}/>
+            <input className='form-input' placeholder='lastname' type="text" {...register('lastname')}/>
+            <button className='btn-red' type='submit'>sign Up</button>
         </form>
-    </>
+  </section>
   )
 }
 

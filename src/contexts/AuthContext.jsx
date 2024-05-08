@@ -37,6 +37,16 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
         }
     }
+    const logOut = async ()=> {
+        try {
+            Cookies.remove('authorization')
+            setUser(null)
+            setIsAuthenticated(false)
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const verifySession = async () => {
         const token = Cookies.get('authorization')
@@ -69,6 +79,7 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{
             signUp,
             signIn,
+            logOut,
             user,
             isAuthenticated,
             loading

@@ -1,32 +1,28 @@
 import { useAuth } from "../contexts/AuthContext"
 import { Link } from 'react-router-dom'
+import {} from '../css/navbar.css'
 
 const NavBar = () => {
-    const { user } = useAuth()
+    const { user, logOut} = useAuth()
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to={`/${user?.username}`}>profile</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/">principal</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/browser">browser</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/discover">discover</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav className="nav">
+            <ul className="nav-links">
+                {
+                    user ? 
+                    <>
+                    <li className="nav-li"><Link to={`/profile/?username=${user?.username}`} className="link">{user?.username}</Link></li>
+                    <li className="nav-li"><Link to={`/`} className="link">Principal</Link></li>
+                    <li className="nav-li"><Link to={`/browser`} className="link">Browser</Link></li>
+                    <li className="nav-li"><Link className="link" onClick={logOut} replace to={'/login'}>LogOut</Link></li>
+                    </>
+                    :
+                    <>
+                    <li className="nav-li"><Link to={`/Login`} className="link">Login</Link></li>
+                    <li className="nav-li"><Link to={`/Register`} className="link">Register</Link></li>
+                    </>
+                }
+
+            </ul>
         </nav>
     )
 }

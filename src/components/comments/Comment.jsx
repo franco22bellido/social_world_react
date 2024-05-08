@@ -1,7 +1,7 @@
 const Comment = ({comment={}}) => {
 
   return (
-    <div>
+    <div className="card">
       <p><strong>username: {comment.user.username}</strong></p>
       <p>{comment.text}</p>
     </div>

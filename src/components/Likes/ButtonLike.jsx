@@ -1,30 +1,29 @@
 import { useEffect, useState } from 'react'
 import { createLike, deleteLike, getLike } from '../../API/likes.api'
 
-const ButtonLike = ({post= {}, setPost={}}) => {
+const ButtonLike = ({postId, incrementLikesCount, decrementLikesCount}) => {
     const [like, setLike] = useState()
     
     const handleLike = async () => {
         if(!like){
-            await createLike(post.id)
-            setPost({...post, likesCount: post.likesCount + 1})
+            await createLike(postId)
+            incrementLikesCount()
         }else{
-            await deleteLike(post.id)
-            setPost({...post, likesCount: post.likesCount + -1})
+            await deleteLike(postId)
+            decrementLikesCount()
         }
         
-        return setLike(!like)
-        
+        return setLike(!like)   
     }
     const getData = async ()=> {
-        const data = await getLike(parseInt(post.id))
+        const data = await getLike(parseInt(postId))
         setLike(data.state)
     }
     useEffect(()=> {
         getData()
     }, [])
     return (
-        <button onClick={handleLike}>{like ? 'dislike' : 'like'}</button>
+         <button onClick={handleLike} className='btn-blue' >{like ? 'dislike' : 'like'}</button>
     )
 }
 

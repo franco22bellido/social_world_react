@@ -6,16 +6,15 @@ import ValidateRoute from './components/ValidateRoute'
 import Profile from './Pages/Profile/Profile'
 import Principal from './Pages/Principal/Principal'
 import PostPage from './Pages/Post/PostPage'
-import NavBar from './components/NavBar'
 import Browser from './Pages/Browser/Browser'
 import Discover from './Pages/Discover/Discover'
 import RegisterPage from './Pages/RegisterPage'
+import NavBar from './components/NavBar'
 
 function App() {
 
   return (
   <AuthProvider>
-    
     <BrowserRouter>
     <NavBar/>
       <Routes>
@@ -23,8 +22,8 @@ function App() {
         <Route path='/login' element={<LoginPage/>}/>
 
         <Route element={<ValidateRoute/>}>
-          <Route path='/:username' element={<Profile/>}/>
           <Route path='/' element={<Principal/>}/>
+          <Route path='/profile/' element={<Profile/>}/>
           <Route path='/post/:postId' element={<PostPage/>}/>
           <Route path='/browser' element={<Browser/>}/>
           <Route path='/discover' element={<Discover/>}/>

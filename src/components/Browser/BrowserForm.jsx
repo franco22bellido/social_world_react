@@ -9,12 +9,12 @@ const BrowserForm = ({handlerResults}) => {
     handlerResults(data)
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register('username', { required: true })} />
-        <button type='submit'>search</button>
+    <>
+      <form className='container-flex form' onSubmit={handleSubmit(onSubmit)}>
+        <input className='form-input' placeholder='type a username' type="text" {...register('username', { required: true })} />
+        <button className='btn-red' type='submit'>search</button>
       </form>
-    </div>
+    </>
   )
 }
 

@@ -6,14 +6,17 @@ import { useAuth } from "../../contexts/AuthContext"
 const useProfile = (username) => {
 
     const [profile, setProfile] = useState(false)
+    const [posts, setPosts] = useState(false)
     const {user} = useAuth()
 
     const getProfile = async () => {
         const { data } = await getUserProfile(username)
+
         if (username !== user.username) {
             const { state } = await getFollowingById(data.id)
             return setProfile({ ...data, followState: state })
         }
+        setPosts(data.posts)
         return setProfile(data)
     }
     useEffect(() => {
@@ -21,7 +24,8 @@ const useProfile = (username) => {
     }, [username])
 
     return {
-        profile, setProfile
+        profile, setProfile,
+        posts, setPosts
     }
 }
 export default useProfile

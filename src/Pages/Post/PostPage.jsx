@@ -10,29 +10,40 @@ import UseComments from "./hooks/UseComments"
 const PostPage = () => {
   const {postId} = useParams()
   const [post, setPost] = useState()
-  const {comments} = UseComments(postId)
+  const {comments, setComments} = UseComments(postId)
   
   const getPost = async ()=> {
     const data = await getOne(parseInt(postId))
     setPost(data)
   }
 
+
+  const incrementLikes = ()=> {
+    setPost({...post, likesCount: post.likesCount + 1})
+  }
+  const decrementLikes = ()=> {
+    setPost({...post, likesCount: post.likesCount + -1})
+  }
+
+
   useEffect(()=> {
       getPost()
   }, [])
   return (
-    <>
+    <section>
     {
         post && (
-        <>
-        <Post username={post.user.username} post={post}/>
-        <ButtonLike post={post} setPost={setPost}/>
-        <CommentForm/>
+        <div className="container-flex">
+          <div className="card">
+            <Post username={post.user.username} post={post}/>
+            <ButtonLike postId={post.id} incrementLikesCount={incrementLikes} decrementLikesCount={decrementLikes} setPost={setPost}/>
+            <CommentForm setComments={setComments} comments={comments}/>
+          </div>
         <CommentsList comments={comments}/>
-        </>
+        </div>
         )
     }
-    </>
+    </section>
   )
 }
 

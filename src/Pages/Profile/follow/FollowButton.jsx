@@ -3,7 +3,7 @@ const FollowButton = ({handleFollowOne=()=>{}, followState}) => {
   return (
     <>
         {
-            <button onClick={()=>handleFollowOne()}>{followState ? 'unfollow' : 'follow'}</button>
+            <button className="btn-blue" onClick={()=>handleFollowOne()}>{followState ? 'unfollow' : 'follow'}</button>
         }
     </>
   )

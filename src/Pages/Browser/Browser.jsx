@@ -10,7 +10,7 @@ const Browser = () => {
   }
 
   return (
-    <div>
+    <div className="container-flex">
         <BrowserForm handlerResults={handlerResults}/>
         <UserResults results={results}/>
     </div>

@@ -16,13 +16,14 @@ const LoginPage = () => {
         }
     }, [isAuthenticated])
     return (
-        <article>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="username" onChange={({ target }) => setValues({ ...values, username: target.value })} />
-                <input type="password" placeholder="password" onChange={({ target }) => setValues({ ...values, password: target.value })} />
-                <button type="submit">Sign in</button>
+        <section className='container-flex'>
+            <form className='container-flex form' onSubmit={handleSubmit}>
+                <h1>Login</h1>
+                <input className='form-input' type="text" placeholder="username" onChange={({ target }) => setValues({ ...values, username: target.value })} />
+                <input className='form-input' type="password" placeholder="password" onChange={({ target }) => setValues({ ...values, password: target.value })} />
+                <button className='btn-red' type="submit">Sign in</button>
             </form>
-        </article>
+        </section>
     )
 }
 

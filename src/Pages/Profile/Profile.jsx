@@ -1,16 +1,11 @@
 import PostsList from "../../components/posts/PostsList"
-import { useParams } from "react-router-dom"
-import {useAuth} from '../../contexts/AuthContext'
+import { useSearchParams } from "react-router-dom"
 import useProfile from "./UseProfile"
-import FollowButton from "./follow/FollowButton"
-import UseFollow from "./follow/UseFollow"
 import ProfileComponent from "./ProfileComponent"
 
 const Profile = () => {
-  const {username} = useParams()
-  const {user} = useAuth()
-  const {profile, setProfile} = useProfile(username)
-  const {handleFollowOne} = UseFollow(profile, setProfile)
+  const [searchParams] = useSearchParams()
+  const {profile, setProfile, posts, setPosts} = useProfile(searchParams.get('username'))
 
 
   return (
@@ -18,17 +13,10 @@ const Profile = () => {
       {
         profile &&
         (
-          <>
-            <ProfileComponent profile={profile}/>
-
-            {
-              username !== user.username &&
-              <FollowButton handleFollowOne={handleFollowOne} followState={profile.followState}/>
-            }
-
-          <h3>posts: </h3>
-          <PostsList posts={profile.posts}/>
-          </>
+          <section className="container-flex">
+            <ProfileComponent profile={profile} setProfile={setProfile}/>
+            <PostsList posts={posts} setPosts={setPosts} />
+          </section>
         )
       }
     </section>
