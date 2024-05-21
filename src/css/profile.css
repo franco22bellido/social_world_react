@@ -24,6 +24,9 @@ input{
     align-items: center;
     justify-content: center;
     align-content: center;
+    width: 96%;
+    margin: auto;
+    gap: 5px;
 }
 .container-flex-row{
     display: flex;
@@ -33,6 +36,9 @@ input{
 .p-m-0{
    margin: 0px;
    padding: 0px;
+}
+.mt-10-vh{
+    margin-top: 10vh;
 }
 
 .text-center{

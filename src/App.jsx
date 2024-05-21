@@ -10,6 +10,7 @@ import Browser from './Pages/Browser/Browser'
 import Discover from './Pages/Discover/Discover'
 import RegisterPage from './Pages/RegisterPage'
 import NavBar from './components/NavBar'
+import AutoLogin from './components/AutoLogin'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/followers/:username' element={<></>}/>
           <Route path='/following/:username' element={<></>}/>
         </Route>
+        <Route path='/usertest/:test' element={<AutoLogin/>}/>
       </Routes>
     </BrowserRouter>
     

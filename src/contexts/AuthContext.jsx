@@ -29,8 +29,6 @@ export const AuthProvider = ({ children }) => {
         try {
             const { user } = await login(values)
             setUser(user)
-            // const bearer = `B${token}`
-            // Cookies.set('token', token)
             setIsAuthenticated(true)
             return user;
         } catch (error) {

@@ -34,7 +34,7 @@ const PostPage = () => {
     {
         post && (
         <div className="container-flex">
-          <div className="card">
+          <div className="card mt-10-vh">
             <Post username={post.user.username} post={post}/>
             <ButtonLike postId={post.id} incrementLikesCount={incrementLikes} decrementLikesCount={decrementLikes} setPost={setPost}/>
             <CommentForm setComments={setComments} comments={comments}/>

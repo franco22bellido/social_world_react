@@ -1,49 +1,48 @@
 import axios from "./axios.config"
-import {baseUrl} from './base.url'
 
-export const getFollowers = async ()=> {
+export const getFollowers = async () => {
     try {
-        const res = axios.get(`${baseUrl}followers`)
+        const res = axios.get(`/followers`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const deleteFollower =(followerId)=> {
+export const deleteFollower = (followerId) => {
     try {
-        const res = axios.delete(`${baseUrl}followers/${followerId}`)
+        const res = axios.delete(`/followers/${followerId}`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const getFollowings = async ()=> {
+export const getFollowings = async () => {
     try {
-        const res = await axios.get(`${baseUrl}following`)
+        const res = await axios.get(`/following`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const deleteFollowing = async (followingId)=> {
+export const deleteFollowing = async (followingId) => {
     try {
-        const res = await axios.delete(`${baseUrl}following/${followingId}`)
+        const res = await axios.delete(`/following/${followingId}`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const followUser = async (followingId)=> {
+export const followUser = async (followingId) => {
     try {
-        const res = await axios.post(`${baseUrl}following/${followingId}`)
+        const res = await axios.post(`/following/${followingId}`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const getFollowingById = async (followingId)=> {
+export const getFollowingById = async (followingId) => {
     try {
-        const res = await axios.get(`${baseUrl}following/${followingId}`)
+        const res = await axios.get(`/following/${followingId}`)
         return res.data
     } catch (error) {
         console.log(error)
