@@ -27,12 +27,15 @@ export const AuthProvider = ({ children }) => {
     }
     const signIn = async (values) => {
         try {
+            setLoading(true)
             const { user } = await login(values)
             setUser(user)
+            setLoading(false)
             setIsAuthenticated(true)
             return user;
         } catch (error) {
-            console.log(error)
+            setIsAuthenticated(false)
+            setLoading(false)
         }
     }
     const logOut = async ()=> {
@@ -65,6 +68,8 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
             return setLoading(false)
         } catch (error) {
+            setIsAuthenticated(false)
+            setLoading(false)
             console.log(error)
         }
 
