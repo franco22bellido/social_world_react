@@ -15,5 +15,6 @@ export const register = async (values)=> {
 
 export const verifyToken = async ()=> {
         const res = await axios.get(`/auth/profile`,)
+        console.log(res)
         return res.data
 }

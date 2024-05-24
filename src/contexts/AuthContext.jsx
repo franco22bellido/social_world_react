@@ -50,13 +50,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const verifySession = async () => {
-        const token = Cookies.get('authorization')
         setLoading(true)
-        if (!token) {
-            setLoading(false)
-            setUser(null)
-            return setIsAuthenticated(false)
-        }
         try {
             const { user } = await verifyToken()
             if (!user) {
@@ -68,9 +62,10 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
             return setLoading(false)
         } catch (error) {
+            console.log("errors")
+            console.log(error)
             setIsAuthenticated(false)
             setLoading(false)
-            console.log(error)
         }
 
     }
