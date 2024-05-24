@@ -1,6 +1,6 @@
 import axios from "./axios.config"
 
-const pathname = 'posts/'
+const pathname = '/posts/'
 
 
 export const getPostsByFollowing = async ()=> {
