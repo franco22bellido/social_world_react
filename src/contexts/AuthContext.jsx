@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     }
     const logOut = async ()=> {
         try {
-            Cookies.remove('authorization')
+            Cookies.remove('token')
             setUser(null)
             setIsAuthenticated(false)
             setLoading(false)
