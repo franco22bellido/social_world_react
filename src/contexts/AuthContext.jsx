@@ -50,17 +50,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     const verifySession = async () => {
-        setLoading(true)
         try {
-            const { user } = await verifyToken()
-            if (!user) {
-                setLoading(false)
-                setUser(null)
-                return setIsAuthenticated(false)
-            }
+            const {user} = await verifyToken()
             setUser(user)
+            setLoading(false)
             setIsAuthenticated(true)
-            return setLoading(false)
         } catch (error) {
             console.log("errors")
             console.log(error)
