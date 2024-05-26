@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { login, logout, register, verifyToken } from "../API/auth.api"
+import { login, clearCookiesServer, register, verifyToken } from "../API/auth.api"
 
 const AuthContext = createContext()
 
@@ -40,7 +40,8 @@ export const AuthProvider = ({ children }) => {
     }
     const logOut = async () => {
         try {
-            const res = await logout()
+            const res = await clearCookiesServer()
+            console.log('pasamos por aca')
             console.log(res)
             setUser(null)
             setIsAuthenticated(false)

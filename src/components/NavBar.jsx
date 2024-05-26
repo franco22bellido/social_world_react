@@ -14,6 +14,7 @@ const NavBar = () => {
                     <li className="nav-li"><Link to={`/`} className="link">Principal</Link></li>
                     <li className="nav-li"><Link to={`/browser`} className="link">Browser</Link></li>
                     <li className="nav-li"><Link className="link" onClick={logOut} replace to={'/login'}>LogOut</Link></li>
+                    <button className="btn" onClick={()=> logOut()}>logout</button>
                     </>
                     :
                     <>
