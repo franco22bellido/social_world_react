@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
             return user;
         } catch (error) {
+            setUser(null)
             setIsAuthenticated(false)
             setLoading(false)
         }
@@ -50,20 +51,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     const verifySession = async () => {
-        setLoading(true)
         try {
-            const { user } = await verifyToken()
-            if (!user) {
-                setLoading(false)
-                setUser(null)
-                return setIsAuthenticated(false)
-            }
+            const {user} = await verifyToken()
             setUser(user)
+            setLoading(false)
             setIsAuthenticated(true)
-            return setLoading(false)
         } catch (error) {
             console.log("errors")
             console.log(error)
+            setUser(null)
             setIsAuthenticated(false)
             setLoading(false)
         }
