@@ -18,3 +18,7 @@ export const verifyToken = async ()=> {
         console.log(res)
         return res.data
 }
+export const logout = async ()=> {
+    const res = await axios.delete(`/auth/logout`,)
+    return res;
+}
