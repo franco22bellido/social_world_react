@@ -40,9 +40,7 @@ export const AuthProvider = ({ children }) => {
     }
     const logOut = async () => {
         try {
-            const res = await clearCookiesServer()
-            console.log('pasamos por aca')
-            console.log(res)
+            await clearCookiesServer()
             setUser(null)
             setIsAuthenticated(false)
             setLoading(false)
