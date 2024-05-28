@@ -20,7 +20,6 @@ export const verifyToken = async () => {
 }
 export const clearCookiesServer = async () => {
     try {
-        console.log("hlamund")
         const res = await axios.delete(`/auth/logout`,)
         return res;
     } catch (error) {
