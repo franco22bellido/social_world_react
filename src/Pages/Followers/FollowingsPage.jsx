@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import FollowersList from "../../components/Followers/FollowersList"
 import useFollowings from './hooks/useFollowings'
 
 const FollowingsPage = () => {
-    const { followings } = useFollowings()
+    const {username} = useParams()
+    const { followings } = useFollowings(username)
     return (
         <div>
+            <Link to={`/${username}`}>go back</Link>
             <FollowersList followers={followings} />
-            <Link to={'/followers'}>view followers</Link>
+            <Link to={`/${username}/followers`}>view followers</Link>
         </div>
     )
 }

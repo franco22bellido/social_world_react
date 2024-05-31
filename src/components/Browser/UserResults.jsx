@@ -10,7 +10,7 @@ const UserResults = ({results=[]}) => {
             results.map((user) => (
             <div className='card' key={user.id}>
                 <p>username: </p>
-                <Link to={`/profile/?username=${user.username}`}>{user.username}</Link>  
+                <Link to={`/${user.username}`}>{user.username}</Link>  
                 <p>email: {user.email}</p>
             </div>))
           }

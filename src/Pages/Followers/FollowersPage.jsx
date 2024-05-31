@@ -8,8 +8,9 @@ const FollowersPage = () => {
 
   return (
     <div>
+      <Link to={`/${username}`}>go back</Link>
       <FollowersList followers={followers}/>  
-      <Link to={'/following'}>view followigs</Link>
+      <Link to={`/${username}/following`}>view followigs</Link>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { getFollowers } from "../../../API/followers.api"
 const useFollowers = (username) => {
     const [followers, setFollowers] = useState()
     const getData = async () => {
-        const followersFound = await getFollowers()
+        const followersFound = await getFollowers(username)
         setFollowers(followersFound)
     }
 
