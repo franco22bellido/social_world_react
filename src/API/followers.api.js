@@ -2,15 +2,15 @@ import axios from "./axios.config"
 
 export const getFollowers = async () => {
     try {
-        const res = axios.get(`/followers`)
+        const res = await axios.get(`/followers`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
-export const deleteFollower = (followerId) => {
+export const deleteFollower = async (followerId) => {
     try {
-        const res = axios.delete(`/followers/${followerId}`)
+        const res = await axios.delete(`/followers/${followerId}`)
         return res.data
     } catch (error) {
         console.log(error)
@@ -31,6 +31,7 @@ export const deleteFollowing = async (followingId) => {
     } catch (error) {
         console.log(error)
     }
+    
 }
 export const followUser = async (followingId) => {
     try {

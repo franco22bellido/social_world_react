@@ -8,9 +8,9 @@ const CreatePost = ({posts, setPosts}) => {
 
 
   const onSubmit = async (values)=> {
+    reset()
     const data = await createPost(values)
     setPosts([{...data, username: user.username}, ...posts])
-    reset()
   }
   return (
         <form className='form' onSubmit={handleSubmit(onSubmit)}> 

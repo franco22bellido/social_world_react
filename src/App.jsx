@@ -11,12 +11,14 @@ import Discover from './Pages/Discover/Discover'
 import RegisterPage from './Pages/RegisterPage'
 import NavBar from './components/NavBar'
 import AutoLogin from './components/AutoLogin'
+import FollowersPage from './Pages/Followers/FollowersPage'
+import FollowingsPage from './Pages/Followers/FollowingsPage'
 
 function App() {
 
   return (
   <AuthProvider>
-    <BrowserRouter>
+    <BrowserRouter >
     <NavBar/>
       <Routes>
         <Route path='/register' element={<RegisterPage/>}/>
@@ -30,8 +32,8 @@ function App() {
           <Route path='/discover' element={<Discover/>}/>
           <Route path='/coments/:postId' element={<></>}/>
           <Route path='/likes/:postId' element={<></>}/>
-          <Route path='/followers/:username' element={<></>}/>
-          <Route path='/following/:username' element={<></>}/>
+          <Route path='/followers/' element={<FollowersPage/>}/>
+          <Route path='/following/' element={<FollowingsPage/>}/>
         </Route>
         <Route path='/usertest/:test' element={<AutoLogin/>}/>
       </Routes>

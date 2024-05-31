@@ -5,26 +5,36 @@ import DeleteButton from "./Buttons/DeleteButton"
 
 const PostsList = ({posts = [], setPosts}) => {
 
-  const addLike = (i)=> {
-    posts[i].likesCount = posts[i].likesCount + 1;
-    setPosts([...posts])
+  const addLike = (postId)=> {
+    const postsUpdated = posts.map((post)=> {
+      if(post.id === postId) {
+        post.likesCount = post.likesCount + 1;
+        return post}
+        return post;
+      })
+    setPosts([...postsUpdated])
   }
-  const decrementLike = (i)=> {
-    posts[i].likesCount = posts[i].likesCount - 1;
-    setPosts([...posts])
+  const decrementLike = (postId)=> {
+    const postsUpdated = posts.map((post)=> {
+      if(post.id === postId) {
+        post.likesCount = post.likesCount - 1;
+        return post}
+        return post;
+      })
+    setPosts([...postsUpdated])
   }
 
   return (
     <>
       {
-        posts && posts.map((post, i)=> (
-        <article className="card" key={i}>
+        posts && posts.map((post)=> (
+        <article className="card" key={post.id}>
           {
             !post?.username && 
             <DeleteButton postId={post.id} posts={posts} setPosts={setPosts}/>
           }
-          <Post post={post} username={post?.username} key={i}/>
-          <ButtonLike postId={post.id} incrementLikesCount={()=> addLike(i)} decrementLikesCount={()=> decrementLike(i)}/>
+          <Post post={post} username={post?.username}/>
+          <ButtonLike postId={post.id} incrementLikesCount={()=> addLike(post.id)} decrementLikesCount={()=> decrementLike(post.id)}/>
           <Link className="comment-link" to={`/post/${post.id}`}>{post.commentsCount} comments...</Link>
         </article>
 

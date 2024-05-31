@@ -10,6 +10,7 @@ const Post = ({post = {}, username=false}) => {
         <p>likes: {post.likesCount }</p>
         <p>comments: {post.commentsCount}</p>
         </strong>
+        <p>createdAt: {post.createdAt}</p>
       </>
   )
 }

@@ -36,7 +36,7 @@
     background-color: rgb(0, 0, 0);
 }
 .btn-black:active{
-    transform: scale(0.7);
+    color: gray;
 }
 .btn-blue{
     background-color: rgb(0, 145, 255);
