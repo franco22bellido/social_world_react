@@ -26,14 +26,14 @@ function App() {
 
         <Route element={<ValidateRoute/>}>
           <Route path='/' element={<Principal/>}/>
-          <Route path='/profile/' element={<Profile/>}/>
+          <Route path='/:username' element={<Profile/>}/>
           <Route path='/post/:postId' element={<PostPage/>}/>
           <Route path='/browser' element={<Browser/>}/>
           <Route path='/discover' element={<Discover/>}/>
           <Route path='/coments/:postId' element={<></>}/>
           <Route path='/likes/:postId' element={<></>}/>
-          <Route path='/followers/' element={<FollowersPage/>}/>
-          <Route path='/following/' element={<FollowingsPage/>}/>
+          <Route path='/:username/followers' element={<FollowersPage/>}/>
+          <Route path='/:username/following' element={<FollowingsPage/>}/>
         </Route>
         <Route path='/usertest/:test' element={<AutoLogin/>}/>
       </Routes>

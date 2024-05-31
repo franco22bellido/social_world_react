@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import FollowersList from "../../components/Followers/FollowersList"
 import useFollowers from "./hooks/useFollowers"
 
 const FollowersPage = () => {
-  const {followers} = useFollowers()
+  const {username} = useParams()
+  const {followers} = useFollowers(username)
+
   return (
     <div>
       <FollowersList followers={followers}/>  

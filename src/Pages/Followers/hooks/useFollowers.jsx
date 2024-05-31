@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getFollowers } from "../../../API/followers.api"
 
-const useFollowers = () => {
+const useFollowers = (username) => {
     const [followers, setFollowers] = useState()
     const getData = async () => {
         const followersFound = await getFollowers()

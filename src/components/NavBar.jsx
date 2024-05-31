@@ -10,7 +10,7 @@ const NavBar = () => {
                 {
                     user ? 
                     <>
-                    <li className="nav-li"><Link to={`/profile/?username=${user?.username}`} className="link">{user?.username}</Link></li>
+                    <li className="nav-li"><Link to={`/${user?.username}`} className="link">{user?.username}</Link></li>
                     <li className="nav-li"><Link to={`/`} className="link">Principal</Link></li>
                     <li className="nav-li"><Link to={`/browser`} className="link">Browser</Link></li>
                     <li className="nav-li"><Link className="link" onClick={logOut} replace>LogOut</Link></li>

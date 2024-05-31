@@ -10,10 +10,10 @@ const ProfileComponent = ({ profile = {}, setProfile }) => {
       <h3>{profile.profile.firstname} {profile.profile.lastname}</h3>
       <ul className='p-m-0 container-flex-row'>
         <li className='li-inline'>
-          <Link className='link' to={'/followers'}>followers: {profile.profile.followersCount}</Link>
+          <Link className='link' to={`/${profile.username}/followers/`}>followers: {profile.profile.followersCount}</Link>
         </li>
         <li className='li-inline'>
-          <Link className='link' to={'/following'}>followings: {profile.profile.followingCount}</Link>
+          <Link className='link' to={`/${profile.username}/following/`}>following: {profile.profile.followingCount}</Link>
         </li>
         {
           profile.hasOwnProperty("followState") &&
