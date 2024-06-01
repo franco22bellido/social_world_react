@@ -19,7 +19,10 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = async (values) => {
         try {
-            return await register(values)
+            setLoading(true)
+            const res =  await register(values)
+            setLoading(false)
+            return res;
         } catch (error) {
             return error
         }
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
     const verifySession = async () => {
         try {
-            const {user} = await verifyToken()
+            const { user } = await verifyToken()
             setUser(user)
             setLoading(false)
             setIsAuthenticated(true)

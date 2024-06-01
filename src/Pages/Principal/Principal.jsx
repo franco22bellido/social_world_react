@@ -3,7 +3,7 @@ import CreatePost from '../../components/posts/CreatePost'
 import UsePosts from './hooks/UsePosts'
 
 const Principal = () => {
-  const { posts, setPosts} = UsePosts()
+  const { posts, setPosts,} = UsePosts()
 
   return (
     <div className='container-flex'>

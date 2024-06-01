@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import './index.css'
 import LoginPage from './Pages/LoginPage'
 import { AuthProvider } from './contexts/AuthContext'
 import ValidateRoute from './components/ValidateRoute'

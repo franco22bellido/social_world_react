@@ -1,15 +1,17 @@
 import {useForm} from 'react-hook-form'
-import { createPost } from '../../API/posts.api'
 import {useAuth} from '../../contexts/AuthContext'
+import UsePosts from '../../Pages/Principal/hooks/UsePosts'
+import Loader from '../Loader'
 
 const CreatePost = ({posts, setPosts}) => {
   const {handleSubmit, register, reset} = useForm()
+  const {addPost, loading} = UsePosts()
   const { user } = useAuth()
 
 
   const onSubmit = async (values)=> {
     reset()
-    const data = await createPost(values)
+    const data = await addPost(values)
     setPosts([{...data, username: user.username}, ...posts])
   }
   return (
@@ -21,6 +23,7 @@ const CreatePost = ({posts, setPosts}) => {
             }}
             className='form-area' placeholder='what are you doing?' name="" id="" {...register("text", {required: true})}></textarea>
             <button className='btn-black' type='submit'>create post</button>
+            <Loader loading={loading}/>
         </form>
   )
 }

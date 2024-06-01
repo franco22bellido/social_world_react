@@ -1,11 +1,12 @@
 import { useAuth } from "../contexts/AuthContext"
 import { Navigate, Outlet } from "react-router-dom"
+import Loader from "./Loader"
 
 const ValidateRoute = () => {
   const {isAuthenticated, loading} = useAuth()
 
   if(loading) {
-    return <div>loading...</div>
+    return <Loader loading={loading} className={'h-[400px]'}/>
   }
   
   if(!isAuthenticated && !loading){
