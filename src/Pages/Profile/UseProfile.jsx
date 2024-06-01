@@ -15,8 +15,9 @@ const useProfile = (username) => {
         const { data } = await getUserProfile(username)
         if (username !== user.username) {
             const { state } = await getFollowingById(data.id)
-            return setProfile({ ...data, followState: state })
             setLoading(false)
+            return setProfile({ ...data, followState: state })
+            
         }
         setLoading(false)
         setPosts(data.posts)
