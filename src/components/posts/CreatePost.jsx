@@ -15,7 +15,7 @@ const CreatePost = ({posts, setPosts}) => {
     setPosts([{...data, username: user.username}, ...posts])
   }
   return (
-        <form className='form' onSubmit={handleSubmit(onSubmit)}> 
+    <form className='form' onSubmit={handleSubmit(onSubmit)}> 
             <textarea
             onKeyUp={(e)=> {
               e.target.style.height = 'inherit'
