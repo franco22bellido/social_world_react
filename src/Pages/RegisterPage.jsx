@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import ErrorsList from '../components/ErrorsList'
 const RegisterPage = () => {
   
   const {register, handleSubmit} = useForm()
-  const { signUp } = useAuth() 
+  const { signUp, errors} = useAuth() 
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (values)=> {
@@ -24,6 +25,7 @@ const RegisterPage = () => {
             <input className='form-input' placeholder='firstname' type="text" {...register('firstname')}/>
             <input className='form-input' placeholder='lastname' type="text" {...register('lastname')}/>
             <button className='btn-red' type='submit'>sign Up</button>
+            <ErrorsList errors={errors}/>
         </form>
   </section>
   )

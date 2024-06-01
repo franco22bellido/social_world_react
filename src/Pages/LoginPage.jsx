@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
+import ErrorsList from '../components/ErrorsList'
 const LoginPage = () => {
 
     const [values, setValues] = useState()
-    const { signIn, isAuthenticated, loading } = useAuth()
+    const { signIn, isAuthenticated, loading, errors} = useAuth()
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,6 +26,7 @@ const LoginPage = () => {
                 <Loader loading={loading}/>
                 <button className='btn-red' type="submit">Sign in</button>
             </form>
+            <ErrorsList errors={errors}/>
         </section>
     )
 }

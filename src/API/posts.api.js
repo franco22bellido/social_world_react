@@ -21,12 +21,8 @@ export const getOne = async (postId)=> {
 }
 
 export const createPost = async (values)=> {
-    try {
         const res = await axios.post(`${pathname}`, values)
         return res.data
-    } catch (error) {
-        console.log(error)
-    }
 }
 export const deletePost = async  (postId)=> {
     try {

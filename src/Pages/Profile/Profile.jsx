@@ -11,7 +11,7 @@ const Profile = () => {
 
   return (
     <section>
-      <Loader loading={loading}/> 
+      <Loader loading={loading} className={'h-[400px]'}/> 
       {
         profile &&
         (

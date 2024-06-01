@@ -16,15 +16,22 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState()
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [errors, setErrors] = useState([])
 
     const signUp = async (values) => {
         try {
             setLoading(true)
-            const res =  await register(values)
-            setLoading(false)
+            const res = await register(values)
             return res;
         } catch (error) {
-            return error
+            const errors = error.response.data.message
+            if(Array.isArray(errors)){
+                setErrors(errors)
+            }else {
+                setErrors([errors])
+            }
+        } finally {
+            setLoading(false)
         }
     }
     const signIn = async (values) => {
@@ -32,12 +39,18 @@ export const AuthProvider = ({ children }) => {
             setLoading(true)
             const { user } = await login(values)
             setUser(user)
-            setLoading(false)
             setIsAuthenticated(true)
             return user;
         } catch (error) {
+            const errors = error.response.data.message
+            if(Array.isArray(errors)){
+                setErrors(errors)
+            }else {
+                setErrors([errors])
+            }
             setUser(null)
             setIsAuthenticated(false)
+        }finally{
             setLoading(false)
         }
     }
@@ -59,7 +72,6 @@ export const AuthProvider = ({ children }) => {
             setLoading(false)
             setIsAuthenticated(true)
         } catch (error) {
-            console.log("errors")
             console.log(error)
             setUser(null)
             setIsAuthenticated(false)
@@ -70,6 +82,13 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         verifySession()
     }, [])
+    useEffect(()=>{
+        if(errors.length > 0 ){
+            setTimeout(() => {
+                setErrors([])
+            }, 3500);
+        }
+    }, [errors])
 
     return (
         <AuthContext.Provider value={{
@@ -78,7 +97,8 @@ export const AuthProvider = ({ children }) => {
             logOut,
             user,
             isAuthenticated,
-            loading
+            loading,
+            errors
         }}>
             {children}
         </AuthContext.Provider>)

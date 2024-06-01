@@ -3,7 +3,8 @@ import { createPost, getPostsByFollowing } from '../../../API/posts.api'
 
 const UsePosts = () => {
     const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(null)
+    const [errors, setErrors] = useState([])
 
     const getPosts = async ()=> {
       setLoading(true)
@@ -12,16 +13,28 @@ const UsePosts = () => {
       return setPosts(data)
     }
     const addPost = async (values)=> {
-      setLoading(true)
-      const data = await createPost(values)
-      setLoading(false)
-      return data
+      try {
+        const data = await createPost(values)
+        return data
+      } catch (error) {
+        const errors = error.response.data.message
+        if(!Array.isArray(error)){
+          return setErrors([errors])
+        }else return setErrors(errors)
+      }
     }
     useEffect(()=> {
       getPosts()
     },[] )
+    useEffect(()=> {
+      if(errors.length > 0){
+        setTimeout(() => {
+          setErrors([])
+        }, 3100);
+      }
+    }, [errors])
   return {
-    posts, setPosts, loading, setLoading, addPost
+    posts, setPosts, loading, setLoading, addPost, errors
   }
 }
 
