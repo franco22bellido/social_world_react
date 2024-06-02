@@ -21,14 +21,14 @@ const CreatePost = ({ posts, setPosts }) => {
     }
   }
   return (
-    <form className='form' onSubmit={handleSubmit(onSubmit)}>
+    <form className='w-full md:w-3/5 flex flex-col justify-center mt-3' onSubmit={handleSubmit(onSubmit)}>
       <textarea
         onKeyUp={(e) => {
           e.target.style.height = 'inherit'
           e.target.style.height = `${e.target.scrollHeight}px`;
         }}
-        className='form-area' placeholder='what are you doing?' name="" id="" {...register("text", { required: true })}></textarea>
-      <button className='btn-black' type='submit'>create post</button>
+        className='form-area p-2' placeholder='write a new post' name="" id="" {...register("text", { required: true })}></textarea>
+      <button className='btn-black mx-auto mt-1 mb-5 w-full md:w-1/4 md:mx-0' type='submit'>create post</button>
       <Loader loading={loading} />
       <ErrorList errors={errors}/> 
     </form>
@@ -36,10 +36,3 @@ const CreatePost = ({ posts, setPosts }) => {
 }
 
 export default CreatePost
-
-// const textarea = document.querySelector('textarea')
-// textarea.addEventListener('keyup', e =>{
-//     textarea.style.height = 'auto';
-//     const scHeight = e.target.scrollHeight - 4
-//     textarea.style.height = `${scHeight}px`
-// })

@@ -3,8 +3,11 @@ import { getFollowings } from "../../../API/followers.api"
 
 const useFollowings = (username) => {
     const [ followings, setFollowings] = useState([])
+    const [loading, setLoading] = useState(true)
     const getData = async () => {
+        setLoading(true)
         const followingsFound = await getFollowings(username)
+        setLoading(false)
         setFollowings(followingsFound)
     }
 
@@ -12,6 +15,7 @@ const useFollowings = (username) => {
         getData()
     }, [])
     return {
+        loading,
         getData,
         followings,
         setFollowings

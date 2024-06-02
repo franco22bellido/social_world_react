@@ -19,8 +19,6 @@
     transform: scale(0.9);
 }
 .btn-black{
-    margin: 0px 15px;
-    width: 80px;
     background-color: rgb(22, 22, 22);
     padding : 3px 20px;
     text-align: center;
