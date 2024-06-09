@@ -1,17 +1,22 @@
-const Post = ({post = {}, username=false}) => {
+const Post = ({ post = {}, username = false }) => {
   return (
-      <>
-        {
-          username &&
-          <p className="mt-0"><strong>username: {username}</strong></p>
+    <>
+      {
+        username &&
+        <p className="mt-0"><strong>username: {username}</strong></p>
+      }
+      <p className="p-break-word">{post.text}</p>
+      {
+        post.imgUrl &&
+        <div className="flex flex-row justify-center">
+          <img className="rounded w-[90%]" src={post.imgUrl} />
+        </div>
         }
-        <p className="p-break-word">{post.text}</p>
-        <strong>
-        <p>likes: {post.likesCount }</p>
-        <p>comments: {post.commentsCount}</p>
-        </strong>
-        <p>createdAt: {new Date(post.createdAt).toLocaleString()}</p>
-      </>
+      <strong>
+        <p>likes: {post.likesCount}</p>
+      </strong>
+      <p>createdAt: {new Date(post.createdAt).toLocaleString()}</p>
+    </>
   )
 }
 
