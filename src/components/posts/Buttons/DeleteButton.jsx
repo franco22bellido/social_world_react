@@ -1,8 +1,12 @@
 import {deletePost} from '../../../API/posts.api'
-const DeleteButton = ({postId ,posts=[], setPosts}) => {
+import { deleteImage } from '../../../API/photos.api'
+const DeleteButton = ({imgUrl='', postId ,posts=[], setPosts}) => {
   
   const handleDeleteOne= async ()=> {
+    let imgUrlSplit = imgUrl.split('/')
+    const public_id = imgUrlSplit[7].split('.')[0]
     await deletePost(parseInt(postId))
+    await deleteImage(public_id)
     const newPosts = posts.filter(post =>  post.id !== postId )
 
     setPosts(newPosts)

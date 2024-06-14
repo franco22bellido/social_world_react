@@ -31,7 +31,7 @@ const PostsList = ({posts = [], setPosts}) => {
         <article className="card" key={post.id}>
           {
             !post?.username && 
-            <DeleteButton postId={post.id} posts={posts} setPosts={setPosts}/>
+            <DeleteButton postId={post.id} imgUrl={post.imgUrl} posts={posts} setPosts={setPosts}/>
           }
           <Post post={post} username={post?.username}/>
           <ButtonLike postId={post.id} incrementLikesCount={()=> addLike(post.id)} decrementLikesCount={()=> decrementLike(post.id)}/>

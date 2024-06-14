@@ -9,7 +9,7 @@ const Post = ({ post = {}, username = false }) => {
       {
         post.imgUrl &&
         <div className="flex flex-row justify-center">
-          <img className="rounded w-[90%]" src={post.imgUrl} />
+          <img className="rounded w-full" src={post.imgUrl} />
         </div>
         }
       <strong>

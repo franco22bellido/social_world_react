@@ -18,18 +18,18 @@ const CreatePost = ({ posts, setPosts }) => {
     reset()
     setLoading(true)
     try {
-    if (file) {
-        //compress image
-        const uri = await new Promise((resolve) => { 
-          Resizer.imageFileResizer(file, 40000, 40000, 'JPEG', 30, 0, async (uri) => {
-            //return uri in base64
-            resolve(uri)
-          });
+      if (file) {
+        const photo = await new Promise((resolve, reject)=> {
+          try {
+            Resizer.imageFileResizer(file, 10000, 10000, 'JPEG', 30, 0, async (blob)=> {
+              return resolve(blob)
+            }, 'blob')
+          } catch (error) {
+              return reject(error)
+          }
         })
-        const photo = await fetch(uri).then((res) => res.blob());
         const formData = new FormData()
         formData.append('photo', photo)
-  
         const res = await uploadImage(formData)
         values = { ...values, imgUrl: res.data.url }
       }
@@ -37,11 +37,11 @@ const CreatePost = ({ posts, setPosts }) => {
       const data = await addPost(values)
       if (data) {
         setPosts([{ ...data, username: user.username }, ...posts])
-        }
+      }
       setLoading(false)
     } catch (error) {
-        setLoading(false)
-        console.error('Error', error);
+      setLoading(false)
+      console.error(error);
     }
   }
   return (
