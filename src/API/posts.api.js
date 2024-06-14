@@ -2,6 +2,9 @@ import axios from "./axios.config"
 
 const pathname = '/posts/'
 
+export const getTrends = async ()=> {
+    return await axios.get('posts/trends')
+}
 
 export const getPostsByFollowing = async ()=> {
     try {

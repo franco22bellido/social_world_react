@@ -1,13 +1,14 @@
 import Post from "./Post"
 import { Link } from "react-router-dom"
-import ButtonLike from '../../components/Likes/ButtonLike'
 import DeleteButton from "./Buttons/DeleteButton"
+import NewButtonLike from "../Likes/NewButtonLike"
 
 const PostsList = ({posts = [], setPosts}) => {
 
   const addLike = (postId)=> {
     const postsUpdated = posts.map((post)=> {
       if(post.id === postId) {
+        post.isLiked = !post.isLiked
         post.likesCount = post.likesCount + 1;
         return post}
         return post;
@@ -17,6 +18,7 @@ const PostsList = ({posts = [], setPosts}) => {
   const decrementLike = (postId)=> {
     const postsUpdated = posts.map((post)=> {
       if(post.id === postId) {
+        post.isLiked = !post.isLiked
         post.likesCount = post.likesCount - 1;
         return post}
         return post;
@@ -34,7 +36,7 @@ const PostsList = ({posts = [], setPosts}) => {
             <DeleteButton postId={post.id} imgUrl={post.imgUrl} posts={posts} setPosts={setPosts}/>
           }
           <Post post={post} username={post?.username}/>
-          <ButtonLike postId={post.id} incrementLikesCount={()=> addLike(post.id)} decrementLikesCount={()=> decrementLike(post.id)}/>
+          <NewButtonLike isLiked={post.isLiked} postId={post.id} addLike={()=>addLike(post.id)} decrementLike={()=>decrementLike(post.id)}/>
           <Link className="comment-link" to={`/post/${post.id}`}>{post.commentsCount} comments...</Link>
         </article>
 

@@ -14,33 +14,35 @@ import NavBar from './components/NavBar'
 import AutoLogin from './components/AutoLogin'
 import FollowersPage from './Pages/Followers/FollowersPage'
 import FollowingsPage from './Pages/Followers/FollowingsPage'
+import TrendsPage from './Pages/Trends/TrendsPage'
 
 function App() {
 
   return (
-  <AuthProvider>
-    <BrowserRouter >
-    <NavBar/>
-      <Routes>
-        <Route path='/register' element={<RegisterPage/>}/>
-        <Route path='/login' element={<LoginPage/>}/>
+    <AuthProvider>
+      <BrowserRouter >
+        <NavBar />
+        <Routes>
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/login' element={<LoginPage />} />
 
-        <Route element={<ValidateRoute/>}>
-          <Route path='/' element={<Principal/>}/>
-          <Route path='/:username' element={<Profile/>}/>
-          <Route path='/post/:postId' element={<PostPage/>}/>
-          <Route path='/browser' element={<Browser/>}/>
-          <Route path='/discover' element={<Discover/>}/>
-          <Route path='/coments/:postId' element={<></>}/>
-          <Route path='/likes/:postId' element={<></>}/>
-          <Route path='/:username/followers' element={<FollowersPage/>}/>
-          <Route path='/:username/following' element={<FollowingsPage/>}/>
-        </Route>
-        <Route path='/usertest/:test' element={<AutoLogin/>}/>
-      </Routes>
-    </BrowserRouter>
-    
-  </AuthProvider>
+          <Route element={<ValidateRoute />}>
+            <Route path='/' element={<Principal />} />
+            <Route path='/trends' element={<TrendsPage />} />
+            <Route path='/:username' element={<Profile />} />
+            <Route path='/post/:postId' element={<PostPage />} />
+            <Route path='/browser' element={<Browser />} />
+            <Route path='/discover' element={<Discover />} />
+            <Route path='/coments/:postId' element={<></>} />
+            <Route path='/likes/:postId' element={<></>} />
+            <Route path='/:username/followers' element={<FollowersPage />} />
+            <Route path='/:username/following' element={<FollowingsPage />} />
+          </Route>
+          <Route path='/usertest/:test' element={<AutoLogin />} />
+        </Routes>
+      </BrowserRouter>
+
+    </AuthProvider>
   )
 }
 
