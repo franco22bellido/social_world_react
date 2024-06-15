@@ -9,8 +9,8 @@ const UsePosts = () => {
     const getPosts = async ()=> {
       setLoading(true)
       const data = await getPostsByFollowing()
-      setLoading(false)
-      return setPosts(data)
+      setPosts(data)
+      return setLoading(false)
     }
     const addPost = async (values)=> {
       try {
@@ -34,7 +34,7 @@ const UsePosts = () => {
       }
     }, [errors])
   return {
-    posts, setPosts, loading, setLoading, addPost, errors
+    posts, setPosts, loading, setLoading, addPost, errors, getPosts
   }
 }
 

@@ -6,9 +6,9 @@ export const getTrends = async ()=> {
     return await axios.get('posts/trends')
 }
 
-export const getPostsByFollowing = async ()=> {
+export const getPostsByFollowing = async (lastPostId)=> {
     try {
-        const res = await axios.get(`${pathname}`)
+        const res = await axios.get(`${pathname}?lastpostid=${lastPostId}`)
         return res.data
     } catch (error) {
         console.log(error)
