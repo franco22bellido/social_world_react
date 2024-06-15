@@ -3,13 +3,18 @@ import { deleteImage } from '../../../API/photos.api'
 const DeleteButton = ({imgUrl='', postId ,posts=[], setPosts}) => {
   
   const handleDeleteOne= async ()=> {
-    let imgUrlSplit = imgUrl.split('/')
-    const public_id = imgUrlSplit[7].split('.')[0]
-    await deletePost(parseInt(postId))
-    await deleteImage(public_id)
-    const newPosts = posts.filter(post =>  post.id !== postId )
-
-    setPosts(newPosts)
+    try {
+      if(imgUrl){
+        let imgUrlSplit = imgUrl.split('/')
+        const public_id = imgUrlSplit[7].split('.')[0]
+        await deleteImage(public_id)
+      }
+      await deletePost(parseInt(postId))
+      const newPosts = posts.filter(post =>  post.id !== postId )
+      setPosts(newPosts)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
