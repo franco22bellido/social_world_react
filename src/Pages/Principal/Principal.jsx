@@ -8,26 +8,25 @@ import { useEffect, useState } from 'react'
 const Principal = () => {
   const { posts, setPosts, loading } = UsePosts()
   const [canExecute, setCanExecute] = useState(true)
-  const [hasMorePosts, setHasMorePosts] = useState(true)
-  const [loadingMorePosts, setLoadingMorePosts] = useState(true)
+  const [hasMorePosts, setHasMorePosts] = useState(false)
+  const [loadingMorePosts, setLoadingMorePosts] = useState(false)
 
+  useEffect(()=> {
+    if(!loading){
+      setTimeout(() => {
+        setHasMorePosts(true)
+      }, 1000);
+    }
+  },[loading])
 
   useEffect(() => {
     const handleScroll = async () => {
-      if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.scrollHeight) {
+      if ((window.innerHeight + Math.round(window.scrollY) + 300) >= document.body.scrollHeight) {
         if (canExecute && hasMorePosts) {
-          setLoadingMorePosts(true)
-          const lastPost = posts[posts.length - 1]
-          const data = await getPostsByFollowing(lastPost.id)
-          setLoadingMorePosts(false)
-          if (data.length === 0) return setHasMorePosts(false)
-          setPosts([...posts, ...data])
-          if (data.length < 7) return setHasMorePosts(false)
           setCanExecute(false)
-
           setTimeout(() => {
             setCanExecute(true)
-          }, 5000);
+          }, 3000);
         }
       }
     }
@@ -35,14 +34,36 @@ const Principal = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [posts, setPosts, canExecute, setCanExecute, hasMorePosts, setHasMorePosts, loadingMorePosts]);
+  }, [canExecute, setCanExecute, hasMorePosts]);
+
+  useEffect(()=> {
+      const getMorePosts = async ()=> {
+        if(!canExecute && hasMorePosts){
+          setLoadingMorePosts(true)
+          const lastPost = posts[posts.length - 1]
+          const data = await getPostsByFollowing(lastPost.id)
+          setLoadingMorePosts(false)
+
+          if (data.length === 0) {
+            setCanExecute(true)
+            return setHasMorePosts(false)
+          }
+            setPosts([...posts, ...data])
+          if (data.length < 7) {
+            setCanExecute(true)
+            return setHasMorePosts(false)
+          }
+        }
+      }
+      getMorePosts()
+    }, [canExecute, setCanExecute, hasMorePosts, posts, setPosts])
 
   return (
     <div className='container-flex'>
       <CreatePost posts={posts} setPosts={setPosts} />
       <Loader loading={loading} />
       <PostsList posts={posts} setPosts={setPosts} />
-      <Loader loading={!canExecute || loadingMorePosts} />
+      <Loader loading={!canExecute||loadingMorePosts} />
     </div>
   )
 }
