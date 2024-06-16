@@ -9,7 +9,7 @@ const Principal = () => {
   const { posts, setPosts, loading } = UsePosts()
   const [canExecute, setCanExecute] = useState(true)
   const [hasMorePosts, setHasMorePosts] = useState(true)
-  const [loadingMorePosts, setLoadingMorePosts] = useState(false)
+  const [loadingMorePosts, setLoadingMorePosts] = useState(true)
 
 
   useEffect(() => {
