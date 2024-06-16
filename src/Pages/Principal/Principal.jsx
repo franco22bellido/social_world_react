@@ -56,7 +56,7 @@ const Principal = () => {
         }
       }
       getMorePosts()
-    }, [canExecute, setCanExecute, hasMorePosts, posts, setPosts])
+    }, [canExecute, hasMorePosts])
 
   return (
     <div className='container-flex'>
