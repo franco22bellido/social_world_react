@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom"
+
 const Post = ({ post = {}, username = false }) => {
   return (
     <>
       {
         username &&
-        <p className="mt-0"><strong>username: {username}</strong></p>
+        <Link to={`/${username}`}>{username}</Link>
       }
       <p className="p-break-word">{post.text}</p>
       {

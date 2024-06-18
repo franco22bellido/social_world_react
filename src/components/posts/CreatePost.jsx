@@ -41,7 +41,7 @@ const CreatePost = ({ posts, setPosts }) => {
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.error(error);
+      console.log(error);
     }
   }
   return (
