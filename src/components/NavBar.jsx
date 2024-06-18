@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import {} from '../css/navbar.css'
 
 const NavBar = () => {
-    const { user, logOut} = useAuth()
+    const { user, logOut, loading} = useAuth()
     return (
+        <>
+            { !loading &&
         <nav className="nav">
             <ul className="nav-links">
                 {
@@ -25,6 +27,8 @@ const NavBar = () => {
 
             </ul>
         </nav>
+            }
+            </>
     )
 }
 
