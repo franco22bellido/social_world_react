@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { login, clearCookiesServer, register, verifyToken } from "../API/auth.api"
+import { login, register, verifyToken } from "../API/auth.api"
 
 const AuthContext = createContext()
 
@@ -25,9 +25,9 @@ export const AuthProvider = ({ children }) => {
             return res;
         } catch (error) {
             const errors = error.response.data.message
-            if(Array.isArray(errors)){
+            if (Array.isArray(errors)) {
                 setErrors(errors)
-            }else {
+            } else {
                 setErrors([errors])
             }
         } finally {
@@ -37,26 +37,26 @@ export const AuthProvider = ({ children }) => {
     const signIn = async (values) => {
         try {
             setLoading(true)
-            const { user } = await login(values)
+            const user = await login(values)
+            window.localStorage.setItem('Authorization', user.authorization)
             setUser(user)
             setIsAuthenticated(true)
-            return user;
         } catch (error) {
             const errors = error.response.data.message
-            if(Array.isArray(errors)){
+            if (Array.isArray(errors)) {
                 setErrors(errors)
-            }else {
+            } else {
                 setErrors([errors])
             }
             setUser(null)
             setIsAuthenticated(false)
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
     const logOut = async () => {
         try {
-            await clearCookiesServer()
+            window.localStorage.removeItem('Authorization')
             setUser(null)
             setIsAuthenticated(false)
             setLoading(false)
@@ -82,8 +82,8 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         verifySession()
     }, [])
-    useEffect(()=>{
-        if(errors.length > 0 ){
+    useEffect(() => {
+        if (errors.length > 0) {
             setTimeout(() => {
                 setErrors([])
             }, 6000);
