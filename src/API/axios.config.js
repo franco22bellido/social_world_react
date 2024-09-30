@@ -6,6 +6,7 @@ const instance = axios.create({
     Authorization: window.localStorage.getItem('Authorization')
   }
 });
+
 instance.interceptors.request.use(config => {
   const token = window.localStorage.getItem('Authorization');
   if (token) {
